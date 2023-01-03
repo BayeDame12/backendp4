@@ -21,11 +21,11 @@ public class Usager {
     private String prenom;
     @Column
     private String nom;
-    @Column
+    @Column(unique = true)
     private String msisdn;
-    @Column
+    @Column(unique = true)
     private String numeroContact;
-    @Column
+    @Column(unique = true)
     private String login;
     @Column
     private String password;

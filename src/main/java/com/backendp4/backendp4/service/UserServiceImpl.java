@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User updateUser(long id, User userRequest) {
         User user=userRepository.findById(id)
-                .orElseThrow(()->new RuntimeException());
+                .orElseThrow(()->new RuntimeException("la tentative de mise a jour na pas abouti"));
         user.setLogin(userRequest.getLogin());
         user.setPassword(userRequest.getPassword());
         return userRepository.save(user);
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException());
+                .orElseThrow(()-> new ResourceNotFoundException("lUtilisateur que vous tenter de supprimer n existe pas!!!"));
         userRepository.delete(user);
     }
     //recuperer un VtoDto
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService{
         if(result.isPresent()) {
             return result.get();
         }else {
-            throw new ResourceNotFoundException();
+            throw new ResourceNotFoundException("L'utilisateur checher n existe pas!!!");
         }
 
     }

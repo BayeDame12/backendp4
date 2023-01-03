@@ -6,7 +6,7 @@ import java.util.List;
 public interface UsagerService {
     List<Usager> getAllUsager();
 
-    Usager createVto(Usager usager);
+    Usager createUsager(Usager usager);
 
     Usager updateUsager(long id, Usager usager);
 
