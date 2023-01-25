@@ -1,16 +1,17 @@
 package com.backendp4.backendp4.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "usager")
+@Table
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usager {
     @Id
@@ -28,24 +29,24 @@ public class Usager {
     @Column(unique = true)
     private String login;
     @Column
-    private String password;
-    @Column
     private String geolatitude;
     @Column
     private String geolongititude;
+    @Column
+    private String type;
 
     @Override
     public String toString() {
-        return "VtoDto{" +
+        return "Usager{" +
                 "id=" + id +
                 ", prenom='" + prenom + '\'' +
                 ", nom='" + nom + '\'' +
                 ", msisdn='" + msisdn + '\'' +
                 ", numeroContact='" + numeroContact + '\'' +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", geolatitude='" + geolatitude + '\'' +
                 ", geolongititude='" + geolongititude + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

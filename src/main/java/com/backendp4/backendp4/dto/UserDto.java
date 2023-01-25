@@ -10,16 +10,18 @@ public class UserDto {
     private Long id;
     @NotBlank
     private String login;
-    @NotBlank
-    private String password;
     private String role;
+    private String prenom;
+    private String nom;
 
     @Override
     public String toString() {
         return "UserDto{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                "id=" + id +
+                ", login='" + login + '\'' +
                 ", role='" + role + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
                 '}';
     }
 }

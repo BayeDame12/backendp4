@@ -32,15 +32,15 @@ public class UsagerServiceImpl implements UsagerService {
     @Override
     public Usager updateUsager(long id, Usager usagerRequest) {
         Usager usager=usagerRepository.findById(id)
-                .orElseThrow(()->new RuntimeException());
+                .orElseThrow(()->new RuntimeException("La tentative de mise a jour du Usager na pas aboutit"));
         usager.setLogin(usagerRequest.getLogin());
-        usager.setPassword(usagerRequest.getPassword());
         usager.setGeolatitude(usagerRequest.getGeolatitude());
         usager.setGeolongititude(usagerRequest.getGeolongititude());
         usager.setNumeroContact(usagerRequest.getNumeroContact());
         usager.setMsisdn(usagerRequest.getMsisdn());
         usager.setPrenom(usagerRequest.getPrenom());
         usager.setNom(usagerRequest.getNom());
+        usager.setType(usagerRequest.getType());
 
         return usagerRepository.save(usager);
     }
@@ -49,7 +49,7 @@ public class UsagerServiceImpl implements UsagerService {
     @Override
     public void deleteUsager(long id) {
         Usager usager = usagerRepository.findById(id)
-        .orElseThrow(()-> new ResourceNotFoundException());
+        .orElseThrow(()-> new ResourceNotFoundException("l'usager que vous tenter de supprimer n existe pas"));
          usagerRepository.delete(usager);
     }
 //recuperer un VtoDto
@@ -59,7 +59,7 @@ public class UsagerServiceImpl implements UsagerService {
         if(result.isPresent()) {
             return result.get();
         }else {
-            throw new ResourceNotFoundException();
+            throw new ResourceNotFoundException("l'usager que vous checher n existe pas!!!");
         }
 
     }

@@ -1,10 +1,10 @@
 package com.backendp4.backendp4.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user")
+@Table
 public class User {
 
     @Id
@@ -22,20 +22,22 @@ public class User {
     @Column(unique = true)
     private String login;
     @Column
-    private String password;
-    @Column
     private String role;
+    @Column
+    private String prenom;
+    @Column
+    private String nom;
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+           // fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private List<Vto>vtos= new ArrayList<>();
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+           // fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private List<Vpt>vpts= new ArrayList<>();
@@ -45,8 +47,11 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", vtos=" + vtos +
+                ", vpts=" + vpts +
                 '}';
     }
 }

@@ -1,15 +1,16 @@
 package com.backendp4.backendp4.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "vto")
+@Table
 public class Vto  extends Usager{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

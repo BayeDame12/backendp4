@@ -17,8 +17,10 @@ import java.util.stream.Collectors;
 @Log4j2
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8090")
+//ToDO a configurer dans spring securite
+@CrossOrigin("*")
 @RequestMapping("/api/user")
+
 public class UserController {
     private final ModelMapper modelMapper;
     private final UserService userService;

@@ -9,17 +9,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VptMapStructImpl implements VptMapStruct{
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public VptMapStructImpl(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
 
     @Override
     public UsagerDto toDto(Usager usager) {
         VptDto newVptDto=new VptDto();
         newVptDto.setLogin(usager.getLogin());
-        newVptDto.setPassword(usager.getPassword());
         newVptDto.setId(usager.getId());
         newVptDto.setGeolatitude(usager.getGeolatitude());
         newVptDto.setGeolongititude(usager.getGeolongititude());
@@ -27,6 +22,7 @@ public class VptMapStructImpl implements VptMapStruct{
         newVptDto.setNom(usager.getNom());
         newVptDto.setNumeroContact(usager.getNumeroContact());
         newVptDto.setMsisdn(usager.getMsisdn());
+        newVptDto.setType(usager.getType());
         return newVptDto;
     }
 
@@ -34,12 +30,12 @@ public class VptMapStructImpl implements VptMapStruct{
     public Usager toEntity(UsagerDto usagerDto) {
         Vpt newVpt=new Vpt();
         newVpt.setLogin(usagerDto.getLogin());
-        newVpt.setPassword(bCryptPasswordEncoder.encode(usagerDto.getPassword()));
         newVpt.setGeolatitude(usagerDto.getGeolatitude());
         newVpt.setGeolongititude(usagerDto.getGeolongititude());
         newVpt.setMsisdn(usagerDto.getMsisdn());
         newVpt.setNumeroContact(usagerDto.getNumeroContact());
         newVpt.setNom(usagerDto.getNom());
+        newVpt.setType("vpt");
         newVpt.setPrenom(usagerDto.getPrenom());
         return newVpt;
     }

@@ -31,13 +31,14 @@ public class VptServiceImpl implements VptService {
         Vpt vpt = vptRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("la tentative de mise a jourdu VPT na pas abouti"));
         vpt.setLogin(vpt.getLogin());
-        vpt.setPassword(vptRequest.getPassword());
         vpt.setGeolatitude(vptRequest.getGeolatitude());
         vpt.setGeolongititude(vptRequest.getGeolongititude());
         vpt.setNumeroContact(vptRequest.getNumeroContact());
         vpt.setMsisdn(vptRequest.getMsisdn());
         vpt.setPrenom(vptRequest.getPrenom());
+        vpt.setType(vptRequest.getType());
         vpt.setNom(vptRequest.getNom());
+
 
         return vptRepository.save(vpt);
     }

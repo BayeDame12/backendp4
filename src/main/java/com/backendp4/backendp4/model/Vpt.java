@@ -1,10 +1,10 @@
 package com.backendp4.backendp4.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "vpt")
+@Table
 public class Vpt extends Usager{
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -21,7 +21,7 @@ public class Vpt extends Usager{
     @OneToMany(
             mappedBy = "vpt",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+           // fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private List<Vto>vtos=new ArrayList<>();

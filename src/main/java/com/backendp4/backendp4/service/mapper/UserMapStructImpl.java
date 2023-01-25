@@ -20,8 +20,9 @@ public class UserMapStructImpl implements UserMapStruct{
         UserDto newUserDto= new UserDto();
         newUserDto.setId(user.getId());
         newUserDto.setLogin(user.getLogin());
-        newUserDto.setPassword(user.getPassword());
         newUserDto.setRole(user.getRole());
+        newUserDto.setNom(user.getNom());
+        newUserDto.setPrenom(user.getPrenom());
         return newUserDto;
     }
 
@@ -29,8 +30,8 @@ public class UserMapStructImpl implements UserMapStruct{
     public User toEntity(UserDto userDto) {
         User newUser =new User();
         newUser.setLogin(userDto.getLogin());
-        newUser.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         newUser.setRole("admin");
-
+        newUser.setNom(userDto.getNom());
+        newUser.setPrenom(userDto.getPrenom());
         return newUser;    }
 }

@@ -30,12 +30,12 @@ public class VtoServiceImpl implements VtoService {
         Vto vto = vtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("La tentative de mise a jour du VTO na pas aboutit"));
         vto.setLogin(vto.getLogin());
-        vto.setPassword(vtoRequest.getPassword());
         vto.setGeolatitude(vtoRequest.getGeolatitude());
         vto.setGeolongititude(vtoRequest.getGeolongititude());
         vto.setNumeroContact(vtoRequest.getNumeroContact());
         vto.setMsisdn(vtoRequest.getMsisdn());
         vto.setPrenom(vtoRequest.getPrenom());
+        vto.setType(vto.getType());
         vto.setNom(vtoRequest.getNom());
 
         return vtoRepository.save(vto);

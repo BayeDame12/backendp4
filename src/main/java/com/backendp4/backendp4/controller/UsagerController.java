@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 @Log4j2
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8090")
+//ToDO a configurer dans spring securite
+@CrossOrigin("*")
 @RequestMapping("/api")
 public class UsagerController {
     private final ModelMapper modelMapper;
@@ -46,6 +49,7 @@ public class UsagerController {
     }
 
     @GetMapping("/{type}")
+
     public List<UsagerDto> getAllUsager(@PathVariable String type) {
         if (type.equalsIgnoreCase("usager")) {
             return usagerService.getAllUsager().stream().map(usager -> modelMapper.map(usager, UsagerDto.class))
@@ -57,7 +61,7 @@ public class UsagerController {
             return vptService.getAllVpt().stream().map(vtp -> modelMapper.map(vtp, UsagerDto.class))
                     .collect(Collectors.toList());
         }
-            return null;
+        return null;
 
 
     }
@@ -74,9 +78,13 @@ public class UsagerController {
             // convert entity to DTO
             UsagerDto postResponse = vptMapStruct.toDto(usager);
             return ResponseEntity.ok().body(postResponse);
+        } else if (type.equalsIgnoreCase("usager")) {
+            log.info("bonjor ");
+            Usager usager = usagerService.getUsagerById(id);
+            UsagerDto postResponse = usagerMapStruct.toDto(usager);
+            return ResponseEntity.ok().body(postResponse);
         }
-            return null;
-
+        return null;
 
     }
 
@@ -98,6 +106,7 @@ public class UsagerController {
             log.info(usagerMapStruct.toEntity(usagerDto));
             return usagerRepository.save(vptMapStruct.toEntity(usagerDto));
         }
+
             return null;
 
 
@@ -106,6 +115,7 @@ public class UsagerController {
     @PutMapping("/{type}/{id}")
     public ResponseEntity<UsagerDto> updateUser(@PathVariable Long id, @RequestBody UsagerDto usagerDto, @PathVariable String type) {
         if (type.equalsIgnoreCase("usager")) {
+            log.info("id:{},usagerDto:{}",id,usagerDto);
             // convert DTO to Entity
             Usager usagerResquest = usagerMapStruct.toEntity(usagerDto);
             Usager usager = usagerService.updateUsager(id, usagerResquest);
@@ -120,7 +130,7 @@ public class UsagerController {
 
     @DeleteMapping("/{type}/{id}")
     public ResponseEntity<?> deletUsager(@PathVariable(name = "id") Long id, @PathVariable String type) {
-        if (type.equalsIgnoreCase("usager")) {;
+        if (type.equalsIgnoreCase("usager")) {
             usagerService.deleteUsager(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }

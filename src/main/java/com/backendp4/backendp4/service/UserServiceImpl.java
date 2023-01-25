@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService{
         User user=userRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("la tentative de mise a jour na pas abouti"));
         user.setLogin(userRequest.getLogin());
-        user.setPassword(userRequest.getPassword());
         return userRepository.save(user);
     }
     //Archiver un vto

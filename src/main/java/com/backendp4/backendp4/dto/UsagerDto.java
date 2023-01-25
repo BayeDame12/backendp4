@@ -24,26 +24,26 @@ public class UsagerDto {
     private String login;
     @NotBlank
 
-    private String password;
-    @NotBlank
-
     private String geolatitude;
     @NotBlank
 
     private String geolongititude;
+    @NotBlank
+
+    private String type;
 
     @Override
     public String toString() {
-        return "VtoDto{" +
+        return "UsagerDto{" +
                 "id=" + id +
                 ", prenom='" + prenom + '\'' +
                 ", nom='" + nom + '\'' +
                 ", msisdn='" + msisdn + '\'' +
                 ", numeroContact='" + numeroContact + '\'' +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", geolatitude='" + geolatitude + '\'' +
                 ", geolongititude='" + geolongititude + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
