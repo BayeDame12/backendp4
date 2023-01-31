@@ -19,17 +19,12 @@ public class Backendp4Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.print("WELCOME TO MY NEW APP");
-
     }
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         // Do any additional configuration here

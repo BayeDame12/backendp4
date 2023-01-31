@@ -2,6 +2,7 @@ package com.backendp4.backendp4.service;
 
 import com.backendp4.backendp4.model.Vto;
 import com.backendp4.backendp4.repository.VtoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,11 @@ import java.util.Optional;
 @Service
 public class VtoServiceImpl implements VtoService {
     private final VtoRepository vtoRepository;
+    private final ModelMapper modelMapper;
 
-    public VtoServiceImpl(VtoRepository vtoRepository) {
+    public VtoServiceImpl(VtoRepository vtoRepository, ModelMapper modelMapper) {
         this.vtoRepository = vtoRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override

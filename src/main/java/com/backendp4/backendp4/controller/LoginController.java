@@ -18,6 +18,7 @@ import javax.validation.Valid;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/authentification")
 public class LoginController {
     @Autowired
@@ -25,11 +26,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseDto Login(@RequestBody RequestDto requestDto) {
-      //  return loginService.authentificate(requestDto);
+        //  return loginService.authentificate(requestDto);
         return null;
     }
+
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request)throws Exception{
+    public String logout(HttpServletRequest request) throws Exception {
         request.logout();
         return "redirect:/";
     }

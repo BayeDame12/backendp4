@@ -20,12 +20,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
 @Log4j2
 
 @RestController
 //ToDO a configurer dans spring securite
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/api")
 public class UsagerController {
     private final ModelMapper modelMapper;
@@ -37,12 +36,14 @@ public class UsagerController {
     private final VtoMapStruct vtoMapStruct;
     private final VptMapStruct vptMapStruct;
 
-    public UsagerController(ModelMapper modelMapper, UsagerService usagerService, UsagerRepository usagerRepository, BCryptPasswordEncoder bCryptPasswordEncoder, VptService vptService, VtoService vtoService, UsagerMapStruct usagerMapStruct, VtoMapStruct vtoMapStruct, VptMapStruct vptMapStruct) {
+    public UsagerController(ModelMapper modelMapper, UsagerService usagerService, UsagerRepository usagerRepository, VptService vptService, VtoService vtoService, UsagerMapStruct usagerMapStruct, VtoMapStruct vtoMapStruct, VptMapStruct vptMapStruct) {
         this.modelMapper = modelMapper;
-        this.usagerService = usagerService;
         this.usagerRepository = usagerRepository;
+
+        this.usagerService = usagerService;
         this.vptService = vptService;
         this.vtoService = vtoService;
+
         this.usagerMapStruct = usagerMapStruct;
         this.vtoMapStruct = vtoMapStruct;
         this.vptMapStruct = vptMapStruct;
@@ -92,14 +93,12 @@ public class UsagerController {
     @PostMapping("/{type}")
     public Usager createUsager(@RequestBody UsagerDto usagerDto, @PathVariable String type) {
         if (type.equalsIgnoreCase("vto")) {
-
             //un log des donnes envoyer sur postman
             log.info(usagerDto);
             //un log des donne reus et envoyer dans la basse de donnes via post man
             log.info(usagerMapStruct.toEntity(usagerDto));
             return usagerRepository.save(vtoMapStruct.toEntity(usagerDto));
         } else if (type.equalsIgnoreCase("vpt")) {
-
             //un log des donnes envoyer sur postman
             log.info(usagerDto);
             //un log des donne reus et envoyer dans la basse de donnes via post man
@@ -107,7 +106,7 @@ public class UsagerController {
             return usagerRepository.save(vptMapStruct.toEntity(usagerDto));
         }
 
-            return null;
+        return null;
 
 
     }
@@ -115,7 +114,7 @@ public class UsagerController {
     @PutMapping("/{type}/{id}")
     public ResponseEntity<UsagerDto> updateUser(@PathVariable Long id, @RequestBody UsagerDto usagerDto, @PathVariable String type) {
         if (type.equalsIgnoreCase("usager")) {
-            log.info("id:{},usagerDto:{}",id,usagerDto);
+            log.info("id:{},usagerDto:{}", id, usagerDto);
             // convert DTO to Entity
             Usager usagerResquest = usagerMapStruct.toEntity(usagerDto);
             Usager usager = usagerService.updateUsager(id, usagerResquest);
@@ -124,7 +123,7 @@ public class UsagerController {
             return ResponseEntity.ok().body(usagerResponse);
         }
 
-       return null;
+        return null;
 
     }
 

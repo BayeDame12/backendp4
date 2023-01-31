@@ -2,16 +2,14 @@ package com.backendp4.backendp4.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 @Data
 public class UsagerDto {
     private Long id;
     @NotBlank
-
     private String prenom;
     @NotBlank
-
     private String nom;
     @NotBlank
 
@@ -20,7 +18,6 @@ public class UsagerDto {
 
     private String numeroContact;
     @NotBlank
-
     private String login;
     @NotBlank
 

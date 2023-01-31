@@ -2,6 +2,7 @@ package com.backendp4.backendp4.service;
 
 import com.backendp4.backendp4.model.Vpt;
 import com.backendp4.backendp4.repository.VptRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,11 @@ import java.util.Optional;
 @Service
 public class VptServiceImpl implements VptService {
     private final VptRepository vptRepository;
+    private final ModelMapper modelMapper;
 
-    public VptServiceImpl(VptRepository vptRepository) {
+    public VptServiceImpl(VptRepository vptRepository, ModelMapper modelMapper) {
         this.vptRepository = vptRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override

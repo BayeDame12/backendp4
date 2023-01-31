@@ -18,7 +18,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 
 
-
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -29,14 +28,14 @@ public class LoginServiceImpl implements LoginService {
     // private String keycloakUrlBase = "";
 
     //
-    private String keycloakRealm="${keycloak.realm}";
+    private String keycloakRealm = "${keycloak.realm}";
     //
-    private String keycloakClientId="backendp4-app";
+    private String keycloakClientId = "backendp4-app";
     //
-    private String keycloakClientSecret="29ee4a1f-df98-42f3-bae3-91370f6469a6";
+    private String keycloakClientSecret = "29ee4a1f-df98-42f3-bae3-91370f6469a6";
     //
-   // @Value("${backoffice.grant-type}")
-    private String keycloakGrantType="password";
+    // @Value("${backoffice.grant-type}")
+    private String keycloakGrantType = "password";
     private final RestTemplate restTemplate;
 
     @Override
@@ -56,10 +55,7 @@ public class LoginServiceImpl implements LoginService {
         var entity = new HttpEntity<>(map, headers);
         //
         try {
-            var result = restTemplate.postForEntity(
-                    keycloakUrlBase + "/realms/" + keycloakRealm + "/protocol/openid-connect/token",
-                    entity, DockerResponseToken.class
-            );
+            var result = restTemplate.postForEntity(keycloakUrlBase + "/realms/" + keycloakRealm + "/protocol/openid-connect/token", entity, DockerResponseToken.class);
             if ((result.getStatusCode() == HttpStatus.OK) && (result.getBody() != null)) {
                 var responseToken = result.getBody();
                 accesToken = (responseToken == null) ? "KO" : responseToken.getAccessItems().toString();
@@ -68,9 +64,6 @@ public class LoginServiceImpl implements LoginService {
             accesToken = "KO";
         }
         return accesToken;
-
-
-
 
 
     }

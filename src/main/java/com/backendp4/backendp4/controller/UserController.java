@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 //ToDO a configurer dans spring securite
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/api/user")
 
 public class UserController {
@@ -35,17 +35,16 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> getAllUser(){
+    public List<UserDto> getAllUser() {
 
-        return userService.getAllUser().stream().map(user -> modelMapper.map(user, UserDto.class))
-                .collect(Collectors.toList());
+        return userService.getAllUser().stream().map(user -> modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id) {
         User user = userService.getUserById(id);
         // convert entity to DTO
-        UserDto postResponse= userMapStruct.toDto(user);
+        UserDto postResponse = userMapStruct.toDto(user);
         return ResponseEntity.ok().body(postResponse);
     }
 
@@ -60,16 +59,17 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto>updateUser(@PathVariable Long id,@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         // convert DTO to Entity
-        User userResquest= userMapStruct.toEntity(userDto);
-        User user= userService.updateUser(id,userResquest);
+        User userResquest = userMapStruct.toEntity(userDto);
+        User user = userService.updateUser(id, userResquest);
         // entity to DTO
-        UserDto userResponse= userMapStruct.toDto(user);
+        UserDto userResponse = userMapStruct.toDto(user);
         return ResponseEntity.ok().body(userResponse);
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<?>deletUser(@PathVariable(name = "id")Long id){
+    public ResponseEntity<?> deletUser(@PathVariable(name = "id") Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
