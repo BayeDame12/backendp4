@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsagerMapStructImpl implements UsagerMapStruct {
     private final ModelMapper modelMapper;
-
     public UsagerMapStructImpl(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }

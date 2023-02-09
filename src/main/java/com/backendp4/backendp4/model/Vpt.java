@@ -15,9 +15,6 @@ import java.util.List;
 @Table
 public class Vpt extends Usager{
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
     @OneToMany(
             mappedBy = "vpt",
             cascade = CascadeType.ALL,

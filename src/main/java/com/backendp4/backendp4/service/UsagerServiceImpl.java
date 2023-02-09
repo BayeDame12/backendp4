@@ -29,6 +29,7 @@ public class UsagerServiceImpl implements UsagerService {
     //creer un VtoDto
     @Override
     public Usager createUsager(Usager usager) {
+        usager.setType("usager");
         return usagerRepository.save(usager);
     }
     //mettre ajour un VtoDto

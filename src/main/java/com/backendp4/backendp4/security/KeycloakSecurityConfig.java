@@ -25,32 +25,29 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(keycloakAuthenticationProvider());
     }
+
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http
-                .headers().frameOptions().disable()
-                .and()
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilterAfter(keycloakSecurityContextRequestFilter(), SecurityContextHolderAwareRequestFilter.class)
-                .addFilterAfter(keycloakAuthenticatedActionsRequestFilter(), KeycloakSecurityContextRequestFilter.class)
-                .authorizeRequests()
-                //.antMatchers("/api/usager","/api/user","/api/vto","/api/vpt").hasRole("admin")
-                .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/user").permitAll()
-                .antMatchers("/api/vto").permitAll()
-                .antMatchers("/api/vpt").permitAll()
-                .antMatchers("/api/usager/**").permitAll()
-               // .antMatchers("/api/vpt").hasRole("admin")
-               .anyRequest().authenticated();
+        http.headers().frameOptions().disable().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().addFilterAfter(keycloakSecurityContextRequestFilter(), SecurityContextHolderAwareRequestFilter.class).addFilterAfter(keycloakAuthenticatedActionsRequestFilter(), KeycloakSecurityContextRequestFilter.class).authorizeRequests()
 
+                //.antMatchers("/api/usager","/api/user","/api/vto","/api/vpt").hasRole("admin")
+/*   .antMatchers("/api/user/login").permitAll()
+   .antMatchers("/api/user").permitAll()
+   .antMatchers("/api/vto").permitAll()
+   .antMatchers("/api/vpt").permitAll()
+   .antMatchers("/api/usager").permitAll()
+   .antMatchers("/api/vto/**").permitAll()
+   .antMatchers("/api/vpt/**").permitAll()
+   .antMatchers("/api/usager/**").permitAll()*/
+                // .antMatchers("/api/vpt").hasRole("admin")
+                .anyRequest().permitAll();
+        //.anyRequest().authenticated();
 
     }
 

@@ -26,6 +26,7 @@ public class VptServiceImpl implements VptService {
 
     @Override
     public Vpt createVpt(Vpt vpt) {
+        vpt.setType("vpt");
         return vptRepository.save(vpt);
     }
 

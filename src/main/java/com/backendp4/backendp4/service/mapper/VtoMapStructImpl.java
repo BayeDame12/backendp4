@@ -14,17 +14,16 @@ public class VtoMapStructImpl implements VtoMapStruct {
     public VtoMapStructImpl(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
-
     @Override
-    public UsagerDto toDto(Usager usager) {
+    public VtoDto toDto(Vto vto) {
         //utiliser pour les Method Get pour recuper les donnes
-        UsagerDto usagerDto = modelMapper.map(usager, UsagerDto.class);
-        return usagerDto;
+        VtoDto vtoDto = modelMapper.map(vto, VtoDto.class);
+        return vtoDto;
     }
 
     @Override
-    public Usager toEntity(UsagerDto usagerDto) {
-        Usager usager = modelMapper.map(usagerDto, Usager.class);
-        return usager;
+    public Vto toEntity(VtoDto vtoDto) {
+        Vto vto = modelMapper.map(vtoDto, Vto.class);
+        return vto;
     }
 }

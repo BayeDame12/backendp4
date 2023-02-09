@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class Backendp4Application implements CommandLineRunner {
-
     public static void main(String[] args) {
         SpringApplication.run(Backendp4Application.class, args);
     }
@@ -27,7 +26,6 @@ public class Backendp4Application implements CommandLineRunner {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        // Do any additional configuration here
         return builder.build();
     }
 }

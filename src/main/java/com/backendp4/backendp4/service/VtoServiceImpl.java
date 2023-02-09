@@ -25,6 +25,7 @@ public class VtoServiceImpl implements VtoService {
 
     @Override
     public Vto createVto(Vto vto) {
+        vto.setType("vto");
         return vtoRepository.save(vto);
     }
 

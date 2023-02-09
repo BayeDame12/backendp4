@@ -12,21 +12,16 @@ public class UsagerDto {
     @NotBlank
     private String nom;
     @NotBlank
-
     private String msisdn;
     @NotBlank
-
     private String numeroContact;
     @NotBlank
     private String login;
     @NotBlank
-
     private String geolatitude;
     @NotBlank
-
     private String geolongititude;
     @NotBlank
-
     private String type;
 
     @Override

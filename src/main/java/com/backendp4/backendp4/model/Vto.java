@@ -13,10 +13,6 @@ import javax.persistence.*;
 @Table
 public class Vto  extends Usager{
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vpt_id")
     private Vpt vpt;
     

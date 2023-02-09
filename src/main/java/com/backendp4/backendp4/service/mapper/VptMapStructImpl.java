@@ -11,20 +11,18 @@ import org.springframework.stereotype.Service;
 public class VptMapStructImpl implements VptMapStruct {
 
     private final ModelMapper modelMapper;
-
     public VptMapStructImpl(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
-
     @Override
-    public UsagerDto toDto(Usager usager) {
-        UsagerDto usagerDto = modelMapper.map(usager, UsagerDto.class);
-        return usagerDto;
+    public VptDto toDto(Vpt vtp) {
+        VptDto vptDto = modelMapper.map(vtp, VptDto.class);
+        return vptDto;
     }
 
     @Override
-    public Usager toEntity(UsagerDto usagerDto) {
-        Usager usager = modelMapper.map(usagerDto, Usager.class);
-        return usager;
+    public Vpt toEntity(VptDto vptDto) {
+        Vpt vpt = modelMapper.map(vptDto, Vpt.class);
+        return vpt;
     }
 }
