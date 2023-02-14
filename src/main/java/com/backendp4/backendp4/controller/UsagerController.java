@@ -22,11 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Log4j2
-
 @RestController
-//ToDO a configurer dans spring securite
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/api")
 public class UsagerController {
@@ -109,7 +106,6 @@ public class UsagerController {
         return null;
     }
     // *****************************END DELETE METHOD*****************************
-
     // *****************************ADD METHOD*****************************
     @PostMapping("/vto")
     public ResponseEntity<VtoDto> createVto(@RequestBody VtoDto vtoDto) {

@@ -46,6 +46,8 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
    .antMatchers("/api/vpt/**").permitAll()
    .antMatchers("/api/usager/**").permitAll()*/
                 // .antMatchers("/api/vpt").hasRole("admin")
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("http://localhost:8080/auth/realms/backendp4/protocol/openid-connect/token").permitAll()
                 .anyRequest().permitAll();
         //.anyRequest().authenticated();
 
